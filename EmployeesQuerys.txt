@@ -1,0 +1,86 @@
+SELECT *
+FROM Employees
+
+--1
+SELECT E.[FirstName],[LastName],[CountryRegionName],[StateProvinceName]
+FROM Employees AS E
+WHERE E.[CountryRegionName]='United States'
+
+--2
+SELECT E.[JobTitle],COUNT(E.[JobTitle]) AS Result
+FROM Employees AS E
+GROUP BY E.[JobTitle]
+
+--3
+SELECT E.FirstName,COUNT(E.FirstName) AS Result
+FROM Employees AS E
+GROUP BY E.FirstName
+
+--4
+SELECT TOP 5 E.[FirstName], COUNT(E.[FirstName])
+FROM Employees AS E
+GROUP BY E.[FirstName]
+ORDER BY COUNT(E.[FirstName]) DESC
+
+--5
+SELECT TOP 5 FirstName, COUNT(FirstName)
+FROM Employees AS E
+GROUP BY E.[FirstName]
+ORDER BY COUNT(E.[FirstName]) ASC
+
+--6
+SELECT TOP 5 [City],COUNT([City])
+FROM Employees AS E
+GROUP BY E.[City]
+ORDER BY COUNT(E.[City]) DESC
+
+--7
+SELECT TOP 5 E.[City],COUNT([City])
+FROM Employees AS E
+GROUP BY (E.[City])
+ORDER BY COUNT(E.[City]) DESC
+
+--8
+SELECT E.[EmailAddress] 
+FROM Employees AS E
+WHERE E.[StartDate]>'01-01-2012'
+
+--9
+SELECT E.[StartDate],COUNT([StartDate]) AS Result
+FROM Employees AS E
+GROUP BY (E.[StartDate])
+
+--10
+SELECT E.[CountryRegionName],[StartDate],COUNT([FirstName]) AS EmployeesCount 
+FROM Employees AS E
+GROUP BY E.[CountryRegionName],[StartDate]
+
+--11
+UPDATE Employees
+SET [EndDate]='02-02-2022'
+WHERE [EndDate] IS NULL
+
+--12
+SELECT E.[EndDate],COUNT(E.[EndDate]) AS LeftCount
+FROM Employees AS E
+GROUP BY E.[EndDate]
+
+--13
+SELECT *
+FROM Employees AS E
+WHERE YEAR(E.[EndDate]-E.[StartDate])>1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
